@@ -1,0 +1,34 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nomasgrim/codeand_blog.git"
+  },
+  "keywords": [
+    "frontend",
+    "angular",
+    "blog"
+  ],
+  "author": "code_",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nomasgrim/codeand_blog/issues"
+  },
+  "homepage": "https://github.com/nomasgrim/codeand_blog#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-data": "^1.2.1",
+    "gulp-pug": "^3.0.4",
+    "gulp-run-sequence": "^0.3.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-stylus": "^2.5.0"
+  }
+}
