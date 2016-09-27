@@ -15,16 +15,17 @@ in creative folder
 clone repo
 
 ##### Step 2
-npm install
+be in the app directory then run:
+[code]npm install[/code]
 
 ##### Step 3
-gulp build
+[code]gulp build[/code]
 
 ##### Step 5
 
 If you done't already have http-server
 [code]$ npm install -g http-server[/code]
-then
+then run
 [code]$ http-server [/code]
 
 
