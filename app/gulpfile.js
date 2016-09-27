@@ -75,7 +75,7 @@ gulp.task('stylus', function(cb){
 });
 
 gulp.task('pug', function () {
-  return gulp.src(srcViewBase + '*.jade')
+  return gulp.src(srcViewBase + '*.pug')
     .pipe(pug())
     .pipe(gulp.dest(distBase));
 });
