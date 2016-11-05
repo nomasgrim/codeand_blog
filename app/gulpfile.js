@@ -6,6 +6,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var pug  = require('gulp-pug');
 var htmlbeautify = require('gulp-html-beautify');
 var clean = require('gulp-clean');
+var browserSync = require('browser-sync').create();
 
 var srcBase = 'src/';
 var srcAssetBase = srcBase + 'assets/';
@@ -31,7 +32,8 @@ gulp.task('sourcemaps-inline', ['linenos'], function () {
     .pipe(sourcemaps.init())
     .pipe(stylus())
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest(distAssetBase + '/css'));
+    .pipe(gulp.dest(distAssetBase + '/css'))
+    .pipe(browserSync.reload({stream: true}));
 });
  
 gulp.task('build-stylus', ['stylus', 'linenos', 'sourcemaps-inline']);
@@ -39,18 +41,34 @@ gulp.task('build-stylus', ['stylus', 'linenos', 'sourcemaps-inline']);
 gulp.task('pug', function (cb) {
   return gulp.src(srcViewBase + '*.pug')
     .pipe(pug())
-    .pipe(gulp.dest(distBase));
+    .pipe(gulp.dest(distBase))
+    .pipe(browserSync.reload({stream: true}));;
 });
 
 gulp.task('htmlbeautify', ['pug'], function() {
   var options = {indentSize: 2};
   gulp.src(distBase + '*.html')
     .pipe(htmlbeautify(options))
-    .pipe(gulp.dest(distBase))
+    .pipe(gulp.dest(distBase));
 });
 
 gulp.task('build', ['build-clean', 'build-stylus', 'pug', 'htmlbeautify']);
 
 gulp.task('build-clean', function(cb){
   return gulp.src('build').pipe(clean());
-})
+});
+
+
+gulp.task('browser', function() {
+    browserSync.init({
+        port: 8080,
+        server: {
+            baseDir: "./htdocs"
+        }
+    });
+});
+
+gulp.task('watch', ['browser'], function () {
+    gulp.watch("src/assets/stylus/*.styl", ['build-stylus']);
+    gulp.watch("src/views/*.pug", ['pug']);
+});

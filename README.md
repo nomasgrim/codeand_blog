@@ -3,7 +3,7 @@
 
 #### Technologies
 * Gulp
-* Angular 2.0
+* Angular 2.0 @TO DO
 * Jade
 * Stylus
 
@@ -16,16 +16,18 @@ clone repo
 
 ##### Step 2
 be in the app directory then run:
-[code]npm install[/code]
+``` npm install ```
+> installs all needed node_modules
 
 ##### Step 3
-[code]gulp build[/code]
+``` gulp build ```
+> compiles pug and stylus into htdocs to be servable to the browser
 
 ##### Step 5
+``` gulp watch ```
+> this will run browser-sync and autoreload browser with changes without having to rebuild
 
-If you done't already have http-server
-[code]$ npm install -g http-server[/code]
-then run
-[code]$ http-server [/code]
-
-
+#### Resources
+* [BrowserSync](https://browsersync.io/docs/gulp)
+* [Pug](https://pugjs.org/api/getting-started.html)
+* [Stylus](http://stylus-lang.com/)
