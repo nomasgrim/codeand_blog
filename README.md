@@ -27,3 +27,7 @@ be in the app directory then run:
 ``` gulp watch ```
 > this will run browserstack and autoreload browser with changes without having to rebuild
 
+#### Resources
+* [BrowserSync](https://browsersync.io/docs/gulp)
+* [Pug](https://pugjs.org/api/getting-started.html)
+* [Stylus](http://stylus-lang.com/)
