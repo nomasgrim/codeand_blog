@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/nomasgrim/codeand_blog#readme",
   "devDependencies": {
+    "browser-sync": "^2.17.5",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-data": "^1.2.1",
