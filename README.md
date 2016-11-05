@@ -25,7 +25,7 @@ be in the app directory then run:
 
 ##### Step 5
 ``` gulp watch ```
-> this will run browserstack and autoreload browser with changes without having to rebuild
+> this will run browser-sync and autoreload browser with changes without having to rebuild
 
 #### Resources
 * [BrowserSync](https://browsersync.io/docs/gulp)
