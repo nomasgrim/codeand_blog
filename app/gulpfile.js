@@ -1,5 +1,8 @@
 var gulp = require('gulp');
 var nodemon = require('gulp-nodemon');
+var browserify = require('browserify');
+var transform = require('vinyl-transform');
+var uglify = require('gulp-uglify');
 
 var stylus = require('gulp-stylus');
 var sourcemaps = require('gulp-sourcemaps');
@@ -101,4 +104,26 @@ gulp.task('watch', ['browser'], function () {
     gulp.watch("src/assets/js/**/*.js", ['app-scripts']);
     gulp.watch("src/assets/stylus/**/*.styl", ['build-stylus']);
     gulp.watch("src/views/*.pug", ['build-pug']);
+});
+
+
+gulp.task('browserify', function () {
+  var browserified = transform(function(filename) {
+    var b = browserify(filename);
+    return b.bundle();
+  });
+
+  return gulp.src(['./src/assets/js/*.js'])
+    .pipe(browserified)
+    .pipe(uglify())
+    .pipe(gulp.dest('./htdocs/assets'));
+});
+
+var gulpBrowser = require("gulp-browser");
+
+gulp.task('gulpBrowserTest',function() {
+  var stream = gulp.src('./src/assets/js/*.js')
+    .pipe(gulpBrowser.browserify())
+    .pipe(gulp.dest("./htdocs/assets/js"));
+  return stream;
 });
