@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var nodemon = require('gulp-nodemon');
 
 var stylus = require('gulp-stylus');
 var sourcemaps = require('gulp-sourcemaps');
@@ -26,7 +27,7 @@ gulp.task('linenos', ['stylus'], function (cb) {
     .pipe(stylus({linenos: true}))
     .pipe(gulp.dest(distAssetBase + '/css'));
 });
- 
+
 gulp.task('sourcemaps-inline', ['linenos'], function () {
   return gulp.src(srcAssetBase + 'stylus/*.styl')
     .pipe(sourcemaps.init())
@@ -78,6 +79,21 @@ gulp.task('browser', function() {
         server: {
             baseDir: "./htdocs"
         }
+    });
+});
+
+gulp.task('server', function() {
+  var options = {
+    script: 'app.js',
+    delayTime: 1,
+    env: {
+      'PORT': 3005
+    }
+  };
+
+  return nodemon(options)
+    .on('restart', function () {
+      console.log('restarting....');
     });
 });
 
