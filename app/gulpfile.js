@@ -86,3 +86,5 @@ gulp.task('watch', ['browser'], function () {
     gulp.watch("src/assets/stylus/**/*.styl", ['build-stylus']);
     gulp.watch("src/views/*.pug", ['build-pug']);
 });
+
+/* change test */
