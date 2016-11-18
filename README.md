@@ -27,6 +27,7 @@ be in the app directory then run:
 ``` gulp watch ```
 > this will run browser-sync and autoreload browser with changes without having to rebuild
 
+
 #### Resources
 * [BrowserSync](https://browsersync.io/docs/gulp)
 * [Pug](https://pugjs.org/api/getting-started.html)
