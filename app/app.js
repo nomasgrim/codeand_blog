@@ -8,6 +8,7 @@ var port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cors());
+app.use(express.static('./htdocs/'));
 
 /**
  * Endpoint to return people from Airtable
@@ -35,6 +36,10 @@ app.get('/getPeople', function(req, res) {
       console.log(error);
     }
   });
+});
+
+app.get('/', function(req, res) {
+  res.sendfile('htdocs/index.html')
 });
 
 app.listen(port, function(err) {
