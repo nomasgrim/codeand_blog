@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "develop": "node app.js | gulp watch | browser",
+    "develop": "node app.js | gulp watch",
     "browser": "open http://localhost:8080"
   },
   "repository": {

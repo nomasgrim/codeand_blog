@@ -13,7 +13,7 @@ function airTablePeople() {
         $( ".people" ).append(
           "<div>" +
           "<span>" + record.fields.Name + "</span>" +
-            "<img style='width:50px;height:50px;' src=" + record.fields.Pic[0].url + ">" +
+            "<img src=" + record.fields.Pic[0].thumbnails.small.url + ">" +
           "</div>"
         );
       })
