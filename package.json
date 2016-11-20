@@ -27,7 +27,6 @@
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-data": "^1.2.1",
-    "gulp-express": "^0.3.5",
     "gulp-html-beautify": "^1.0.1",
     "gulp-nodemon": "^2.2.1",
     "gulp-pug": "^3.0.4",
