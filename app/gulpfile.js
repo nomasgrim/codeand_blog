@@ -75,7 +75,7 @@ gulp.task('build', ['build-clean', 'build-scripts', 'build-stylus', 'build-pug']
 
 gulp.task('browser', function() {
     browserSync.init({
-        port: 8080,
+        port: 8081,
         server: {
             baseDir: "./htdocs"
         }
@@ -93,7 +93,7 @@ gulp.task('serve', function() {
     script: 'app.js',
     delayTime: 1,
     env: {
-      'PORT': 8081
+      'PORT': 8080
     }
   };
 

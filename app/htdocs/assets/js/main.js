@@ -4,7 +4,7 @@ function airTablePeople() {
   console.log('airTablePeopleFunction');
   $.ajax({
     type: 'GET',
-    url: 'http://localhost:8081/getPeople',
+    url: 'http://localhost:8080/getPeople',
     dataType: 'json',
     success: function (records) {
       console.log('data', records);
