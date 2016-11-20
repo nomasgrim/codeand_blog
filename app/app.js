@@ -1,25 +1,49 @@
 var express = require('express');
 var cors = require('cors');
 var bodyParser = require('body-parser');
-// var cookieParser = require('cookie-parser');
-
+var Airtable = require('airtable');
 var app = express();
-app.use(cors());
-
 var port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
+app.use(cors());
 
+/**
+ * Endpoint to return people from Airtable
+ */
+app.get('/getPeople', function(req, res) {
+  var resultsToSend = [];
+  base('People').select({
+    maxRecords: 10,
+    view: "All Contacts"
+  }).eachPage(function page(records, fetchNextPage) {
 
-app.get('/', function(req, res) {
-  res.send('hello main route');
-});
+    // This function (`page`) will get called for each page of records.
 
-app.get('/testDataCall', function(req, res) {
-  res.send('hello test route');
+    records.forEach(function(record) {
+      resultsToSend.push(record.get('Name'));
+    });
+    // To fetch the next page of records, call `fetchNextPage`.
+    // If there are more records, `page` will get called again.
+    // If there are no more records, `done` will get called.
+    fetchNextPage();
+
+    res.json(resultsToSend);
+  }, function done(error) {
+    if (error) {
+      console.log(error);
+    }
+  });
 });
 
 app.listen(port, function(err) {
   console.log('running server on port ' + port);
 });
+
+// Base Airtable configuration
+Airtable.configure({
+  endpointUrl: 'https://api.airtable.com',
+  apiKey: 'keyDrK9mmPrxhVaUW'
+});
+var base = Airtable.base('appbLOgSXFJxYYuzo');

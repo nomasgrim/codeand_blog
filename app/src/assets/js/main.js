@@ -4,22 +4,13 @@ function airTablePeople() {
   console.log('airTablePeopleFunction');
   $.ajax({
     type: 'GET',
-    url: 'http://localhost:8081/',
+    url: 'http://localhost:8081/getPeople',
     dataType: 'json',
-    success: function (data) {
-      console.log('data', data.responseText);
-    }
-  });
-}
-
-function testDataCall() {
-  console.log('testDataCallFunction');
-  $.ajax({
-    type: 'GET',
-    url: 'http://localhost:8081/testDataCall',
-    dataType: 'json',
-    success: function (data) {
-      console.log('data', data.responseText);
+    success: function (records) {
+      console.log('data', records);
+      records.forEach(function (record) {
+        $( ".people" ).append( "<p>" + record + "</p>" );
+      })
     }
   });
 }
