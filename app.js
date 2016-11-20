@@ -30,7 +30,7 @@ app.get('/getPeople', function(req, res) {
     // If there are no more records, `done` will get called.
     fetchNextPage();
 
-    res.json(resultsToSend);
+    res.json(records);
   }, function done(error) {
     if (error) {
       console.log(error);

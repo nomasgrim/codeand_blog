@@ -82,7 +82,7 @@ gulp.task('browser', function() {
     });
 });
 
-gulp.task('watch', ['browser', 'serve'], function () {
+gulp.task('watch', function () {
     gulp.watch("src/assets/js/**/*.js", ['app-scripts']);
     gulp.watch("src/assets/stylus/**/*.styl", ['build-stylus']);
     gulp.watch("src/views/*.pug", ['build-pug']);
