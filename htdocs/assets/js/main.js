@@ -30,5 +30,3 @@ function displayAirTableData (records) {
     );
   })
 }
-
-console.log('testing');
