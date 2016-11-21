@@ -7,6 +7,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var pug  = require('gulp-pug');
 var htmlbeautify = require('gulp-html-beautify');
 var clean = require('gulp-clean');
+//TODO: Swap out browswerSync since we need to run node server on same port. Maybe use gulp-liveReload?
 var browserSync = require('browser-sync').create();
 
 var srcBase = 'src/';

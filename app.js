@@ -12,24 +12,15 @@ app.use(express.static('./htdocs/'));
 
 /**
  * Endpoint to return people from Airtable
+ * base().select lets you target the DB you want to access from AirTable
+ * Loops through each page in DB then returns data with res.json(records)
  */
 app.get('/getPeople', function(req, res) {
-  var resultsToSend = [];
   base('People').select({
     maxRecords: 10,
     view: "All Contacts"
   }).eachPage(function page(records, fetchNextPage) {
-
-    // This function (`page`) will get called for each page of records.
-
-    records.forEach(function(record) {
-      resultsToSend.push(record.get('Name'));
-    });
-    // To fetch the next page of records, call `fetchNextPage`.
-    // If there are more records, `page` will get called again.
-    // If there are no more records, `done` will get called.
     fetchNextPage();
-
     res.json(records);
   }, function done(error) {
     if (error) {
@@ -38,10 +29,16 @@ app.get('/getPeople', function(req, res) {
   });
 });
 
+/**
+ * Main page for express web server to render
+ */
 app.get('/', function(req, res) {
   res.sendfile('htdocs/index.html')
 });
 
+/**
+ * Default port for express to be listening on
+ */
 app.listen(port, function(err) {
   console.log('running server on port ' + port);
 });

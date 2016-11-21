@@ -15,7 +15,7 @@ in creative folder
 clone repo
 
 ##### Step 2
-be in the app directory then run:
+be in the root directory then run:
 ``` npm install ```
 > installs all needed node_modules
 
