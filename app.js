@@ -8,6 +8,7 @@ var port = process.env.PORT || 8080;
 var AWS = require('aws-sdk');
 AWS.config.region = 'us-east-1';
 AWS.config.airTableKey = process.env.AIRTABLE_API_KEY;
+AWS.config.airTableDatabase = process.env.AIRTABLE_DATABASE;
 var s3 = new AWS.S3();
 
 app.use(bodyParser.json());
@@ -53,4 +54,4 @@ Airtable.configure({
   endpointUrl: 'https://api.airtable.com',
   apiKey: AWS.config.airTableKey
 });
-var base = Airtable.base('appbLOgSXFJxYYuzo');
+var base = Airtable.base(AWS.config.airTableDatabase);
