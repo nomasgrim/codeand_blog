@@ -7,6 +7,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var pug  = require('gulp-pug');
 var htmlbeautify = require('gulp-html-beautify');
 var clean = require('gulp-clean');
+//TODO: Swap out browswerSync since we need to run node server on same port. Maybe use gulp-liveReload?
 var browserSync = require('browser-sync').create();
 
 var srcBase = 'src/';
@@ -82,7 +83,7 @@ gulp.task('browser', function() {
     });
 });
 
-gulp.task('watch', ['browser', 'serve'], function () {
+gulp.task('watch', function () {
     gulp.watch("src/assets/js/**/*.js", ['app-scripts']);
     gulp.watch("src/assets/stylus/**/*.styl", ['build-stylus']);
     gulp.watch("src/views/*.pug", ['build-pug']);
