@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var nodemon = require('gulp-nodemon');
 
 var stylus = require('gulp-stylus');
 var sourcemaps = require('gulp-sourcemaps');
@@ -6,6 +7,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var pug  = require('gulp-pug');
 var htmlbeautify = require('gulp-html-beautify');
 var clean = require('gulp-clean');
+//TODO: Swap out browswerSync since we need to run node server on same port. Maybe use gulp-liveReload?
 var browserSync = require('browser-sync').create();
 
 var srcBase = 'src/';
@@ -26,7 +28,7 @@ gulp.task('linenos', ['stylus'], function (cb) {
     .pipe(stylus({linenos: true}))
     .pipe(gulp.dest(distAssetBase + '/css'));
 });
- 
+
 gulp.task('sourcemaps-inline', ['linenos'], function () {
   return gulp.src(srcAssetBase + 'stylus/*.styl')
     .pipe(sourcemaps.init())
@@ -74,15 +76,30 @@ gulp.task('build', ['build-clean', 'build-scripts', 'build-stylus', 'build-pug']
 
 gulp.task('browser', function() {
     browserSync.init({
-        port: 8080,
+        port: 8081,
         server: {
             baseDir: "./htdocs"
         }
     });
 });
 
-gulp.task('watch', ['browser'], function () {
+gulp.task('watch', function () {
     gulp.watch("src/assets/js/**/*.js", ['app-scripts']);
     gulp.watch("src/assets/stylus/**/*.styl", ['build-stylus']);
     gulp.watch("src/views/*.pug", ['build-pug']);
+});
+
+gulp.task('serve', function() {
+  var options = {
+    script: 'app.js',
+    delayTime: 1,
+    env: {
+      'PORT': 8080
+    }
+  };
+
+  return nodemon(options)
+    .on('restart', function () {
+      console.log('restarting....');
+    });
 });
